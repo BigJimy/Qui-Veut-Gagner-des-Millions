@@ -1,0 +1,234 @@
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+body {
+	background: url("background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#newGameContainer {
+	display: block;
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+#newGame {
+	width: 500px;
+	min-height: 400px;
+	position: relative;
+	background-color: #223E95;
+	margin: 20% auto;
+	border: 5px solid #cbcbcb;
+	border-radius: 30px;
+	border-style: inset;
+	overflow: inherit;
+	box-shadow: 5px 5px 10px black;
+	overflow: hidden;
+}
+
+#newGame img {
+	position: absolute;
+	top: -50px;
+	left: -180px;
+	z-index: 0;
+}
+
+.newGamePresentation {
+	z-index: 1;
+}
+
+#newGame p {
+	position: absolute;
+	text-align: center;
+	padding: 20px;
+	padding-top: 150px;
+	left: 50%;
+	margin-left: -220px;
+	font-size: 30px;
+	color: whitesmoke;
+	font-family: sans-serif;
+	text-shadow: 3px 3px 3px black;
+}
+
+#newGameButton {
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	margin-left: -125px;
+	background-color: #000;
+	width: 250px;
+	min-height: 50px;
+	font-size: 20px;
+	color: #fff;
+	border: 4px solid whitesmoke;
+	border-radius: 50px;
+	padding: 10px 10px;
+	text-transform: uppercase;
+	vertical-align: middle;
+  border-style: outset;
+}
+#newGameButton:hover {
+	background-color: orange;
+}
+
+#banner {
+	text-align: center;
+}
+
+#logo_millions {
+	width: 300px;
+	margin: 30px;
+}
+
+#grid {
+	display: grid;
+	grid-template-columns: 75% 25%;
+	grid-gap: 10px;
+	margin: 30px;
+}
+
+
+#popup {
+	grid-column: 1;
+	width: 75%;
+	background-color: rgba(10, 11, 27, 0.75);
+	padding: 30px 50px 50px 50px;
+	border-radius: 50px;
+	border: 2px solid #cbcbcb;
+	box-shadow: 0px 7px 17px 0px rgba(255,255,255,0.75);
+	margin: auto;
+	transition: all 2s 4s;
+}
+
+#gains {
+	width: 80%;
+	margin-right: 20px;
+	grid-column: 2;
+	background-color: rgba(10, 11, 27, 0.9);
+	padding: 30px;
+	border-radius: 20px;
+	border: 2px solid #cbcbcb;
+	box-shadow: 0px 7px 17px 0px rgba(255,255,255,0.75);	
+	font-family: sans-serif;
+	color: white;
+	text-shadow: 4px 4px 4px black;
+	transition: all 2s 4s;
+}
+
+#gains .paliers {
+	color: orange;
+}
+
+.palierCourant {
+	background-color: orange !important;
+	font-size: 30px;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+.palierCourantSpecial {
+	background-color: orange !important;
+	color: whitesmoke !important;
+	font-size: 30px;
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+#gains ul {
+	font-size: 30px;
+	list-style-type: none;
+	text-align: right;
+}
+#gains li {
+	display: block;
+}
+
+#popup h1 {
+	font-family: sans-serif;
+	background-color: #223E95;
+	font-size: 30px;
+	text-align: center;
+	color: #fff;
+	padding: 25px;
+	border-radius: 50px;
+	border: 4px solid whitesmoke;
+  border-style: outset;
+}
+
+#question {
+	font-family: sans-serif;
+	font-size: 20px;
+	color: whitesmoke;
+}
+.buttons {
+	margin-top: 30px;
+	font-family: sans-serif;
+}
+
+#btn0, #btn1, #btn2, #btn3 {
+	background-color: #223E95;
+	width: 47%;
+	min-height: 50px;
+	font-size: 20px;
+	color: #fff;
+	border: 4px solid whitesmoke;
+	border-radius: 50px;
+	margin: 10px 10px 10px 0px;
+	padding: 10px 10px;
+	text-align: left;
+	vertical-align: middle;
+  border-style: outset;
+}
+
+.reponseActive {
+	background-color: orange !important;
+}
+
+.reponseCorrecte {
+	background-color: forestgreen !important;
+}
+
+.choices {
+	margin-left: 5px;
+}
+
+#progress {
+	color: whitesmoke;
+	font-size: 18px;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+}
+
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
+	cursor: pointer;
+	background-color: orange;
+}
+
+
+#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
+	outline: 0;
+}
+
+.lettreReponse {
+	color: orange;
+	font-weight: bold;
+	font-family: Arial;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+

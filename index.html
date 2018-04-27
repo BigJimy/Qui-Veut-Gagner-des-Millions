@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Quiz</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+</head>
+
+<body>
+
+	<div id="newGameContainer">
+		<div id="newGame">
+			<img src="logo_millions_newgame.png" alt="logo Qui veut gagner des millions">
+			<p class="newGamePresentation">Bienvenue sur le jeu en ligne<br/> Qui veut gagner des millions ?</p>
+			
+			<button onclick="newGame()" id="newGameButton">Nouvelle Partie</button>
+			
+		</div>
+
+	</div>
+	
+	<div id="banner">
+			<img src="logo_millions.png" id="logo_millions" alt="Logo Qui veut gagner des Millions">
+	</div>
+	
+	<div id="grid">
+	
+		<div id="popup">
+			<div id="quiz">
+
+				<h1 id="question"></h1>
+
+				<div class="buttons">
+					<button id="btn0" onclick="resultat(choice0.textContent, btn0.id)"><span class="lettreReponse">&#9670; A: </span><span id="choice0"></span></button>
+					<button id="btn1" onclick="resultat(choice1.textContent, btn1.id)"><span class="lettreReponse">&#9670; B: </span><span id="choice1"></span></button>
+					<button id="btn2" onclick="resultat(choice2.textContent, btn2.id)"><span class="lettreReponse">&#9670; C: </span><span id="choice2"></span></button>
+					<button id="btn3" onclick="resultat(choice3.textContent, btn3.id)"><span class="lettreReponse">&#9670; D: </span><span id="choice3"></span></button>
+				</div>
+
+			</div>
+		</div><!-- /Popup -->	
+		
+		<div id="gains">
+			<ul>
+				<li id="p14" class="paliers">1 000 000 €</li>
+				<li id="p13">  300 000 €</li>
+				<li id="p12">  150 000 €</li>
+				<li id="p11">  100 000 €</li>
+				<li id="p10">   72 000 €</li>
+				<li id="p9" class="paliers">48 000 €</li>
+				<li id="p8">    24 000 €</li>
+				<li id="p7">    12 000 €</li>
+				<li id="p6">     6 000 €</li>
+				<li id="p5">     3 000 €</li>
+				<li id="p4" class="paliers">1 500 €</li>
+				<li id="p3">       800 €</li>
+				<li id="p2">       500 €</li>
+				<li id="p1">       300 €</li>
+				<li id="p0">       200 €</li>
+			</ul>
+		</div><!-- /Gains -->	
+		
+		
+	</div><!-- /Grid -->
+
+	
+	
+	
+	
+	<script src="script.js"></script>
+</body>
+
+</html>
