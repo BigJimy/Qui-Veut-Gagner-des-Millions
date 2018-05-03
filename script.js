@@ -85,8 +85,10 @@ function clearQuestion() {
 	document.querySelector("#choice1").textContent = "";
 	document.querySelector("#choice2").textContent = "";
 	document.querySelector("#choice3").textContent = "";	
-	let ancienBouton = document.querySelector("#" + boutonChoisi);	
-	ancienBouton.classList.remove("reponseActive", "reponseCorrecte", "reponseFausse");	 
+	for (var i=0; i < questionCourante.choix.length; i++) {
+				  var Bouton = document.querySelector('#btn' + i);
+					Bouton.classList.remove("reponseActive", "reponseCorrecte", "reponseFausse");
+	} 
 }
 
 function resultat(choixDuJoueur, boutonDuJoueur) {
