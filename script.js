@@ -51,6 +51,13 @@ const questionsList = [
         	// FUNCTIONS //
 =================================== */
 
+var x = document.getElementById("playlist"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+playAudio();
+
 function selectQuestion() {
 	const questionIndex = Math.floor(Math.random() * questionsList.length);
 	questionCourante = questionsList[questionIndex];
@@ -110,7 +117,7 @@ function resultat(choixDuJoueur, boutonDuJoueur) {
 function partiePerdue() {
 	clearInterval(interval);
 	boutonActif.classList.add("reponseFausse");	
-	
+	devoilerReponse();
 	removePalier(palier);
 	setTimeout(clearQuestion, 6000);
 	setTimeout(cacherPanneaux, 4000);
@@ -204,3 +211,30 @@ function afficherFin() {
 	}
 	perduElement.style.display = "block";
 }
+
+function devoilerReponse() {
+	for (var i=0; i < questionCourante.choix.length; i++) {
+			if (questionCourante.choix[i] === questionCourante.bonneReponse){
+				var bonBouton = document.querySelector('#btn' + i);
+				bonBouton.classList.add("reponseCorrecte")
+			}
+	}
+}
+
+document.addEventListener('keypress', (event) => {
+  const keyName = event.keyCode;
+	switch (keyName) {
+  	case 97:
+    resultat(choice0.textContent, btn0.id)
+    break;
+	  case 98:
+    resultat(choice1.textContent, btn1.id)
+    break;	  
+		case 99:
+    resultat(choice2.textContent, btn2.id)
+    break;	  
+		case 100:
+    resultat(choice3.textContent, btn3.id)
+    break;
+	}
+});
