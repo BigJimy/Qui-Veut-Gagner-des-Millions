@@ -20,6 +20,37 @@
 
 	</div>
 	
+	<div id="choixContainer">
+		<div id="choix">
+			<img src="logo_millions_newgame.png" alt="logo Qui veut gagner des millions">
+			<p class="newGamePresentation">Souhaitez-vous continuer ou repartir avec les<span class="sommeEnJeu"></span> ?</p>
+		<div>
+			<button onclick="continuerPartie()" id="continuerButton">Continuer</button>
+			<button onclick="arreterPartie()" id="arreterButton">Arrêter</button>
+		</div>
+		</div>
+	</div>
+
+	<div id="gainContainer">
+		<div id="gain">
+			<img src="logo_millions_newgame.png" alt="logo Qui veut gagner des millions">
+			<p class="newGamePresentation">Félicitations ! Vous avez gagné <span class="sommeGagnee"></span> !</p>
+			<div>
+				<button onclick="reloadGame()" id="recommencerButton">Recommencer</button>
+			</div>
+		</div>
+	</div>
+	
+	<div id="perduContainer">
+		<div id="perdu">
+			<img src="logo_millions_newgame.png" alt="logo Qui veut gagner des millions">
+			<p class="newGamePresentation"><span class="sommeSauvee"></span> !</p>
+			<div>
+				<button onclick="reloadGame()" id="recommencerButton">Recommencer</button>
+			</div>
+		</div>
+	</div>
+		
 	<div id="banner">
 			<img src="logo_millions.png" id="logo_millions" alt="Logo Qui veut gagner des Millions">
 	</div>
@@ -64,9 +95,6 @@
 		
 	</div><!-- /Grid -->
 
-	
-	
-	
 	
 	<script src="script.js"></script>
 </body>

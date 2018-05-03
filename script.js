@@ -1,10 +1,27 @@
 "use strict";
 
 const newGameElement = document.querySelector("#newGameContainer");
+const choixElement = document.querySelector("#choixContainer");
+const gainElement = document.querySelector("#gainContainer");
+const perduElement = document.querySelector("#perduContainer");
+
 let palier= 0;
 let questionCourante;
 let boutonChoisi;
 let boutonActif;
+let panneauChoix;
+let interval;
+let sommeEnJeuElement;
+let sommeEnJeu;
+let sommeSauvee;
+let messageFinContainer;
+
+const panneauQuiz = document.querySelector("#popup");
+const panneauGains = document.querySelector("#gains");
+const newGameButton = document.querySelector('#newGameButton');
+const recommencerButton = document.querySelector('#recommencerButton');
+const arreterButton = document.querySelector('#arreterButton');
+const continuerButton = document.querySelector('#continuerButton');
 
 const questionsList = [
 	{question: "Quel langage n'est pas un langage de programmation ?",
@@ -12,7 +29,22 @@ const questionsList = [
 	bonneReponse: "CSS"},
 	{question: "Quelle syntaxe est la bonne ?",
 	choix: ["<p></p>", "<p><p>", "<p><p/>", "<p></>"],
-	bonneReponse: "<p></p>"}
+	bonneReponse: "<p></p>"},
+	{question: "Quelle syntaxe est correcte ?",
+	choix: ["if (a!=2) {}", "if a!=2 {}", "if (a <> 2) {}", "if a <> 2 {}"],
+	bonneReponse: "if (a!=2) {}"},
+	{question: "Quel type d'évènement n'existe pas ?",
+	choix: ["blur", "load", "mouseclick", "mouseout"],
+	bonneReponse: "mouseclick"},
+	{question: "Que renvoie ch1.slice(-3, -1) si ch1='ABCDE' ?",
+	choix: ["ABC", "AB", "CD", "BC"],
+	bonneReponse: "CD"},
+	{question: "Que renvoie 'navigator.appName' si Internet Explorer 11 est utilisé ?",
+	choix: ["Microsoft Internet Explorer", "IE11", "une erreur", "Netscape"],
+	bonneReponse: "Netscape"},
+	{question: "Quelle fonction permet de temporiser l'éxécution d'une commande ?",
+	choix: ["SetTimer()", "sleep()", "setTimeout()", "wait()"],
+	bonneReponse: "setTimeout()"}
 ];
 
 /* ==================================
@@ -29,20 +61,15 @@ function selectQuestion() {
 	document.querySelector("#choice3").textContent = questionCourante.choix[3];
 };
 
-
 function questionSuivante() {
+	clearInterval(interval);
 	boutonActif.classList.add("reponseCorrecte");		
 	removePalier(palier);
 	selectPalier(palier + 1);
 	palier++;
-	setTimeout(clearQuestion, 6000);
+	setTimeout(clearQuestion, 3000);
 	cacherPanneaux();
-	
-// Afficher niveau atteint
-// Choix continue ou pas ?
-	
-	setTimeout(montrerPanneaux, 6000);
-	setTimeout(selectQuestion, 7000);
+	setTimeout(afficherChoix, 3000);
 }
 
 function clearQuestion() {
@@ -52,7 +79,7 @@ function clearQuestion() {
 	document.querySelector("#choice2").textContent = "";
 	document.querySelector("#choice3").textContent = "";	
 	let ancienBouton = document.querySelector("#" + boutonChoisi);	
-	ancienBouton.classList.remove("reponseActive", "reponseCorrecte");	 
+	ancienBouton.classList.remove("reponseActive", "reponseCorrecte", "reponseFausse");	 
 }
 
 function resultat(choixDuJoueur, boutonDuJoueur) {
@@ -62,6 +89,13 @@ function resultat(choixDuJoueur, boutonDuJoueur) {
 	//on ajoute la classe reponseActive à la réponse sélectionnée :
 	boutonActif = document.querySelector("#" + boutonChoisi);
 	boutonActif.classList.add("reponseActive");
+	
+	interval = setInterval( () => {
+		setTimeout( () => {
+			boutonActif.classList.remove("reponseActive")
+		}, 100)
+		boutonActif.classList.add("reponseActive")
+	}, 200);
 	
 	//si la réponse est bonne :
 	if(bonneReponse === choixDuJoueur) {
@@ -74,7 +108,13 @@ function resultat(choixDuJoueur, boutonDuJoueur) {
 }
 
 function partiePerdue() {
-	console.log("Perdu !");
+	clearInterval(interval);
+	boutonActif.classList.add("reponseFausse");	
+	
+	removePalier(palier);
+	setTimeout(clearQuestion, 6000);
+	setTimeout(cacherPanneaux, 4000);
+	setTimeout(afficherFin, 5000);
 }
 
 function selectPalier(palier) {
@@ -99,23 +139,68 @@ function removePalier(palier) {
 
 function newGame() {
 	newGameElement.style.display = "none";
-	selectPalier(0);
+	selectPalier(palier);
 	selectQuestion();
+	panneauQuiz.style.opacity = 100;
+	panneauGains.style.opacity = 100;	
+}
+
+function reloadGame() {
+	choixElement.style.display = "none";
+	gainElement.style.display = "none";
+	perduElement.style.display = "none";
+	removePalier(palier);
+	palier = 0;
+	selectPalier(palier);
+	selectQuestion();
+	panneauQuiz.style.opacity = 100;
+	panneauGains.style.opacity = 100;	
 }
 
 function cacherPanneaux() {
-	const panneauQuiz = document.querySelector("#popup");
-	const panneauGains = document.querySelector("#gains");
 	panneauQuiz.style.opacity = 0;
 	panneauGains.style.opacity = 0;	
 }
 
 function montrerPanneaux() {
-	const panneauQuiz = document.querySelector("#popup");
-	const panneauGains = document.querySelector("#gains");
 	panneauQuiz.style.opacity = 100;
 	panneauGains.style.opacity = 100;	
 	questionCourante = "";
 	boutonChoisi = "";
 	boutonActif = "";
+}
+
+function afficherChoix() {
+	sommeEnJeuElement = document.querySelector(".sommeEnJeu");
+	sommeEnJeu = document.querySelector("#p" + palier).textContent;
+	sommeEnJeuElement.textContent = sommeEnJeu;
+	panneauChoix = document.querySelector("#choixContainer");
+	panneauChoix.style.display = "block";
+}
+
+function continuerPartie() {
+	panneauChoix = document.querySelector("#choixContainer");
+	panneauChoix.style.display = "none";
+	montrerPanneaux();
+	selectQuestion();
+}
+
+function arreterPartie() {
+	sommeEnJeuElement = document.querySelector(".sommeGagnee");
+	sommeEnJeuElement.textContent = sommeEnJeu;
+	panneauChoix = document.querySelector("#choixContainer");
+	panneauChoix.style.display = "none";
+	gainElement.style.display = "block";
+}
+
+function afficherFin() {
+	sommeEnJeuElement = document.querySelector(".sommeSauvee");
+	if(palier <= 4)
+	{sommeEnJeuElement.textContent = "Vous n'avez rien gagné. Mauvais !!";		}
+	else {
+		if(palier > 4 && palier <= 9) {sommeSauvee = 1500}
+		else {sommeSauvee = 48000}	
+		sommeEnJeuElement.textContent = "Réponse fausse ! Vous avez gagné " + sommeSauvee + "€";
+	}
+	perduElement.style.display = "block";
 }

@@ -7,10 +7,10 @@ body {
 	background: url("background.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	min-height: 100vh;
 }
 
-#newGameContainer {
-	display: block;
+#newGameContainer, #choixContainer, #gainContainer, #perduContainer {
   z-index: 1;
   position: fixed;
   left: 0;
@@ -20,7 +20,23 @@ body {
   background-color: rgba(0, 0, 0, 0.95);
 }
 
-#newGame {
+#choixContainer {
+	display: none;
+}
+
+#gainContainer {
+	display: none;
+}
+
+#newGameContainer {
+	display: block;	
+}
+
+#perduContainer {
+	display: none;	
+}
+
+#newGame, #choix, #gain, #perdu {
 	width: 500px;
 	min-height: 400px;
 	position: relative;
@@ -34,7 +50,7 @@ body {
 	overflow: hidden;
 }
 
-#newGame img {
+#newGame img, #choix img, #gain img, #perdu img {
 	position: absolute;
 	top: -50px;
 	left: -180px;
@@ -58,7 +74,20 @@ body {
 	text-shadow: 3px 3px 3px black;
 }
 
-#newGameButton {
+#choix p, #gain p, #perdu p {
+	position: absolute;
+	text-align: center;
+	padding: 20px;
+	padding-top: 80px;
+	left: 50%;
+	margin-left: -220px;
+	font-size: 30px;
+	color: whitesmoke;
+	font-family: sans-serif;
+	text-shadow: 3px 3px 3px black;
+}
+
+#newGameButton, #recommencerButton {
 	position: absolute;
 	bottom: 40px;
 	left: 50%;
@@ -74,9 +103,40 @@ body {
 	text-transform: uppercase;
 	vertical-align: middle;
   border-style: outset;
+	cursor: pointer;
 }
-#newGameButton:hover {
+#recommencerButton {
+	z-index: 1;
+}
+#continuerButton, #arreterButton {
+	background-color: #000;
+	width: 200px;
+	min-height: 50px;
+	font-size: 20px;
+	color: #fff;
+	border: 4px solid whitesmoke;
+	border-radius: 50px;
+	padding: 10px 10px;
+	text-transform: uppercase;
+	vertical-align: middle;
+  border-style: outset;
+	z-index: 1;
+	cursor: pointer;
+}
+#continuerButton {
+	position: absolute;
+	bottom: 40px;
+	right: 20px;
+}
+#arreterButton {
+	position: absolute;
+	bottom: 40px;
+	left: 20px;
+}
+
+#newGameButton:hover, #continuerButton:hover, #arreterButton:hover {
 	background-color: orange;
+	cursor: pointer;
 }
 
 #banner {
@@ -97,19 +157,23 @@ body {
 
 
 #popup {
+	opacity: 0;
 	grid-column: 1;
 	width: 75%;
+	max-width: 1000px;
 	background-color: rgba(10, 11, 27, 0.75);
 	padding: 30px 50px 50px 50px;
 	border-radius: 50px;
 	border: 2px solid #cbcbcb;
 	box-shadow: 0px 7px 17px 0px rgba(255,255,255,0.75);
 	margin: auto;
-	transition: all 2s 4s;
+	transition: all 2s 2s;
 }
 
 #gains {
+	opacity: 0;
 	width: 80%;
+	max-width: 300px;
 	margin-right: 20px;
 	grid-column: 2;
 	background-color: rgba(10, 11, 27, 0.9);
@@ -120,7 +184,7 @@ body {
 	font-family: sans-serif;
 	color: white;
 	text-shadow: 4px 4px 4px black;
-	transition: all 2s 4s;
+	transition: all 2s 1s;
 }
 
 #gains .paliers {
@@ -194,6 +258,10 @@ body {
 
 .reponseCorrecte {
 	background-color: forestgreen !important;
+}
+
+.reponseFausse {
+	background-color: red !important;
 }
 
 .choices {
