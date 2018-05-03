@@ -117,7 +117,7 @@ function resultat(choixDuJoueur, boutonDuJoueur) {
 function partiePerdue() {
 	clearInterval(interval);
 	boutonActif.classList.add("reponseFausse");	
-	devoilerReponse();
+	setTimeout(devoilerReponse, 1000);
 	removePalier(palier);
 	setTimeout(clearQuestion, 6000);
 	setTimeout(cacherPanneaux, 4000);
