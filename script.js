@@ -240,3 +240,9 @@ document.addEventListener('keypress', (event) => {
     break;
 	}
 });
+
+function sheat() {
+	console.log("Bonjour");
+	removePalier(palier);
+	palier = 10;
+}
